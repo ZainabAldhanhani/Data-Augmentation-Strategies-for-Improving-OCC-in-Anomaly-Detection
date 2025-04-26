@@ -45,6 +45,19 @@ Our goal is to quantify how each technique (and their combinations) affects anom
 - `README.md`: Overview and setup instructions.
 - `requirements.txt`: Required libraries for the project.
 
+### Dataset
+
+This project leverages several widely-used benchmark datasets in the anomaly detection domain:
+
+- **[UCSD Anomaly Detection Dataset](http://www.svcl.ucsd.edu/projects/anomaly/dataset.htm)**  
+  Grayscale surveillance videos of pedestrian walkways recorded by a fixed elevated camera, split into Ped1 (34 train / 36 test) and Ped2 (16 train / 12 test) clips labeled per frame.
+
+- **[CUHK Avenue Dataset](https://www.kaggle.com/datasets/vibhavvasudevan/avenue)**  
+  16 training videos of normal campus-avenue activity and 21 testing videos (15 328 train / 15 324 test frames) containing anomalies such as wrong-direction walking, loitering, and novel objects.
+
+- **[MVTec Anomaly Detection (MVTec AD)](https://www.kaggle.com/datasets/ipythonx/mvtec-ad?select=toothbrush)**  
+  5354 high-resolution images across 15 industrial object and texture categories, with defect-free images for training and both normal and defective samples (with pixel-precise masks) for testing.
+
 
 ## Getting Started
 
@@ -54,60 +67,9 @@ Our goal is to quantify how each technique (and their combinations) affects anom
    ```bash
    git clone https://github.com/your-username/occ-data-augmentation.git
    cd occ-data-augmentation
-  
+    ```
 
 2. **Install Requirements**
-
-```bash
-pip install -r requirements.txt
-```
-### Dataset
-
-This project uses the **AI vs Human Generated Dataset** provided by Shutterstock and DeepMedia via Kaggle.
-
-The dataset consists of paired authentic and AI-generated images, with each real image matched to a synthetic version created using advanced generative models. It includes a balanced mix of content types, including images featuring people, to support robust and diverse model training. The data is divided into `train` and `test` folders, with labels provided only for the training set.
-
-You can download the dataset directly from Kaggle:  
- [https://www.kaggle.com/datasets/alessandrasala79/ai-vs-human-generated-dataset](https://www.kaggle.com/datasets/alessandrasala79/ai-vs-human-generated-dataset)
-
-
-To explore and verify the dataset structure, we provide a helper script: `preview_dataset.py`. This script offers a quick overview of the dataset and ensures everything is properly organized after downloading it from Kaggle.
-
-Make sure `train.csv` and the `train_data/` folder are in the same directory. Then run:
-
-```bash
-python preview_dataset.py /path/to/your_dataset/train
-```
-
-## Classification (Without Pairwise learning)
-To train and evaluate a model, use the following commands:
-
-#### For VGG16: 
-```bashn
-python python Classification/VGG16.py --dataset_path Path
-```
-#### For ResNet50: 
-```bash
-python python Classification/ResNet50.py --dataset_path Path
-```
-#### for ConvNeXt:
-```bashn
-python python Classification/ConvNext.py --dataset_path Path
-```
-
-## Classification (With Pairwise learning)
-To train and evaluate a model, use the following commands:
-#### For VGG16: 
-```bashn
-python python Pairwise-learning/VGG16.py --dataset_path Path
-```
-#### For ResNet50: 
-```bash
-python python Pairwise-learning/ResNet50.py --dataset_path Path
-```
-#### for ConvNeXt:
-```bashn
-python python Pairwise-learning/ConvNext.py --dataset_path Path
-```
-
-
+    ```bash
+    pip install -r requirements.txt
+    ```
