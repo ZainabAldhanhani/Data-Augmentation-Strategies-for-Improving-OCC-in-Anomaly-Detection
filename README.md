@@ -19,21 +19,23 @@ Our goal is to quantify how each technique (and their combinations) affects anom
 
 Below is the high-level pipeline showing how we train and test each OCC model, with and without data augmentation, before comparing the results:
 
-![Training & Evaluation Workflow](assets/workflow.png)
+<p align="center">
+  <img src="Figures/Diagram-2.png" alt="Training & Evaluation Workflow" width="700"/>
+</p>
 
 1. **Datasets**  
-   – UCSD Anomaly Detection  
-   – MVTec AD  
-2. **Training**  
+   - UCSD Anomaly Detection
+   - Avenue   
+   -  MVTec AD  
+3. **Training**  
    - Deep SVDD  
    - OCGAN  
    - Autoencoder  
-   – each run twice (raw vs. augmented)  
-3. **Testing & Metrics**  
-   – F1-score  
-   – Precision–Recall AUC  
-4. **Compare Results**  
-   – Measure gains from each augmentation strategy  
+4. **Testing & Metrics**  
+   - F1-score  
+   - Precision–Recall AUC  
+5. **Compare Results**  
+   - Measure gains from each augmentation strategy  
 
 
 ## Data Augmentation Techniques
