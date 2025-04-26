@@ -15,12 +15,26 @@ This project explores **advanced data augmentation** techniques to enrich traini
 
 Our goal is to quantify how each technique (and their combinations) affects anomaly detection performance, false positive rates, and model generalization across Deep SVDD, OCGAN, and Autoencoder frameworks.
 
-## Key Features
+## Workflow
 
--  Integration of multiple state-of-the-art augmentation strategies  
--  Automated training and evaluation pipelines for Deep SVDD, OCGAN, and Autoencoder models  
--  Comprehensive ablation studies on augmentation impact  
--  Modular codebase for easy addition of new augmentations or OCC architectures  
+Below is the high-level pipeline showing how we train and test each OCC model, with and without data augmentation, before comparing the results:
+
+![Training & Evaluation Workflow](assets/workflow.png)
+
+1. **Datasets**  
+   – UCSD Anomaly Detection  
+   – MVTec AD  
+2. **Training**  
+   - Deep SVDD  
+   - OCGAN  
+   - Autoencoder  
+   – each run twice (raw vs. augmented)  
+3. **Testing & Metrics**  
+   – F1-score  
+   – Precision–Recall AUC  
+4. **Compare Results**  
+   – Measure gains from each augmentation strategy  
+
 
 ## Data Augmentation Techniques
 
