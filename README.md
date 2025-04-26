@@ -101,7 +101,7 @@ This project leverages several widely-used benchmark datasets in the anomaly det
 
 ### Installation
 
-1. **Clone the repository**  
+1. **Clone the Repository**  
    ```bash
    git clone https://github.com/your-username/occ-data-augmentation.git
    cd occ-data-augmentation
@@ -111,3 +111,12 @@ This project leverages several widely-used benchmark datasets in the anomaly det
     ```bash
     pip install -r requirements.txt
     ```
+3. **Add the Datasets**
+   
+   Create a data/ folder in the project root
+
+   Download or copy the datasets into `data/` folder
+   ```bash
+    mkdir -p data/
+    ```
+4. **Train and Evaluate the Modeles**
