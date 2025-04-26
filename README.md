@@ -39,11 +39,33 @@ Our goal is to quantify how each technique (and their combinations) affects anom
 
 ## Repository Structure
 
-- `Classification/`: Classification VGG16, ResNet50, and ConvNeXt
-- `Pairwise-learning/`: Classification with Pairwise-learning for VGG16, ResNet50, and ConvNeXt
-- `Visualization/`: View dataset samples
-- `README.md`: Overview and setup instructions.
-- `requirements.txt`: Required libraries for the project.
+- **`Autoencoder/`**  
+  Contains the Autoencoder pipeline for each dataset:  
+  - **`UCSD/`**, **`Avenue/`**, **`MVTecAD/`**  
+    - `train_autoencoder.py` — train on raw data  
+    - `train_autoencoder_augmented.py` — train with data augmentations  
+    - `evaluate.py` — compute detection metrics
+
+- **`OCGAN/`**  
+  Houses the OCGAN workflow per dataset:  
+  - **`UCSD/`**, **`Avenue/`**, **`MVTecAD/`**  
+    - `train_ocgan.py`  
+    - `train_ocgan_augmented.py`  
+    - `evaluate.py`
+
+- **`Deep SVDD/`**  
+  Implements Deep SVDD for each dataset:  
+  - **`UCSD/`**, **`Avenue/`**, **`MVTecAD/`**  
+    - `train_deepsvdd.py`  
+    - `train_deepsvdd_augmented.py`  
+    - `evaluate.py`
+
+- **`README.md`**  
+  Project overview, installation, usage, and structure.
+
+- **`requirements.txt`**  
+  Python dependencies and version requirements.
+
 
 ### Dataset
 
