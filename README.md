@@ -57,24 +57,31 @@ Below is the high-level pipeline showing how we train and test each OCC model, w
 
 - **`Autoencoder/`**  
   Contains the Autoencoder pipeline for each dataset:  
-  - **`UCSD/`**, **`Avenue/`**, **`MVTecAD/`**  
-    - `train_autoencoder.py` — train on raw data  
-    - `train_autoencoder_augmented.py` — train with data augmentations  
-    - `evaluate.py` — compute detection metrics
+  - **`UCSD_ped1/`**, **`UCSD_ped2/`**, **`Avenue/`**, **`MVTec/`**  
+    - `train_autoencoder.py` — train data with no augmentations
+    - `train_autoencoder_CutPaste.py` — train with CutPaste augmentations  
+    - `train_autoencoder_ElasticDeformations.py` — train with Elastic Deformations 
+    - `train_autoencoder_EnvironmentalEffects.py` — train with Simulated Environmental Effects 
+    - `train_autoencoder_FDA.py` — train with Fourier Domain Adaptation (FDA)     
+
 
 - **`OCGAN/`**  
   Houses the OCGAN workflow per dataset:  
-  - **`UCSD/`**, **`Avenue/`**, **`MVTecAD/`**  
-    - `train_ocgan.py`  
-    - `train_ocgan_augmented.py`  
-    - `evaluate.py`
+  - **`UCSD_ped1/`**, **`UCSD_ped2/`**, **`Avenue/`**, **`MVTec/`**  
+    - `train_autoencoder.py` — train data with no augmentations
+    - `train_autoencoder_CutPaste.py` — train with CutPaste augmentations  
+    - `train_autoencoder_ElasticDeformations.py` — train with Elastic Deformations 
+    - `train_autoencoder_EnvironmentalEffects.py` — train with Simulated Environmental Effects 
+    - `train_autoencoder_FDA.py` — train with Fourier Domain Adaptation (FDA)  
 
 - **`Deep SVDD/`**  
   Implements Deep SVDD for each dataset:  
-  - **`UCSD/`**, **`Avenue/`**, **`MVTecAD/`**  
-    - `train_deepsvdd.py`  
-    - `train_deepsvdd_augmented.py`  
-    - `evaluate.py`
+  - **`UCSD_ped1/`**, **`UCSD_ped2/`**, **`Avenue/`**, **`MVTec/`**  
+    - `train_autoencoder.py` — train data with no augmentations
+    - `train_autoencoder_CutPaste.py` — train with CutPaste augmentations  
+    - `train_autoencoder_ElasticDeformations.py` — train with Elastic Deformations 
+    - `train_autoencoder_EnvironmentalEffects.py` — train with Simulated Environmental Effects 
+    - `train_autoencoder_FDA.py` — train with Fourier Domain Adaptation (FDA)  
 
 - **`README.md`**  
   Project overview, installation, usage, and structure.
@@ -119,4 +126,29 @@ This project leverages several widely-used benchmark datasets in the anomaly det
    ```bash
     mkdir -p data/
     ```
-4. **Train and Evaluate the Modeles**
+## Train and Evaluate the Models
+
+Each model folder contains one “vanilla” training script plus one for each augmentation strategy:
+
+### 1. Autoencoder
+
+```bash
+# move into the dataset folder
+cd Autoencoder/<Dataset>
+# e.g. cd Autoencoder/Avenue
+
+# train without augmentation
+python train_autoencoder.py --dataset_path /path/to/Avenue
+
+# -- or with a specific augmentation --
+python train_autoencoder_CutPaste.py --dataset_path /path/to/Avenue
+python train_autoencoder_ElasticDeform.py --dataset_path /path/to/Avenue
+python train_autoencoder_FDA.py --dataset_path /path/to/Avenue
+python train_autoencoder_Environmental.py --dataset_path /path/to/Avenue
+```
+For MVTec, you can point --dataset_path at any category folder(e.g. toothbrush, wood, grid):
+```bash
+cd Autoencoder/Mvtec
+python train_autoencoder_FDA.py --dataset_path /path/to/mvtec_ad/toothbrush
+
+```
