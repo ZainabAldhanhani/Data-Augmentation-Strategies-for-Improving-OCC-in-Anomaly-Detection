@@ -130,25 +130,24 @@ This project leverages several widely-used benchmark datasets in the anomaly det
 
 Each model folder contains one “vanilla” training script plus one for each augmentation strategy:
 
-### 1. Autoencoder
-
-```bash
-# move into the dataset folder
-cd Autoencoder/<Dataset>
-# e.g. cd Autoencoder/Avenue
-
-# train without augmentation
-python train_autoencoder.py --dataset_path /path/to/Avenue
-
-# -- or with a specific augmentation --
-python train_autoencoder_CutPaste.py --dataset_path /path/to/Avenue
-python train_autoencoder_ElasticDeform.py --dataset_path /path/to/Avenue
-python train_autoencoder_FDA.py --dataset_path /path/to/Avenue
-python train_autoencoder_Environmental.py --dataset_path /path/to/Avenue
-```
-For MVTec, you can point --dataset_path at any category folder(e.g. toothbrush, wood, grid):
-```bash
-cd Autoencoder/Mvtec
-python train_autoencoder_FDA.py --dataset_path /path/to/mvtec_ad/toothbrush
-
-```
+1. **Autoencoder**
+    ```bash
+    # move into the dataset folder
+    cd Autoencoder/<Dataset>
+    # e.g. cd Autoencoder/Avenue
+    
+    # train without augmentation
+    python train_autoencoder.py --dataset_path /path/to/Avenue
+    
+    # -- or with a specific augmentation --
+    python train_autoencoder_CutPaste.py --dataset_path /path/to/Avenue
+    python train_autoencoder_ElasticDeform.py --dataset_path /path/to/Avenue
+    python train_autoencoder_FDA.py --dataset_path /path/to/Avenue
+    python train_autoencoder_Environmental.py --dataset_path /path/to/Avenue
+    ```
+    For MVTec, you can point --dataset_path at any category folder(e.g. toothbrush, wood, grid):
+    ```bash
+    cd Autoencoder/Mvtec
+    python train_autoencoder_FDA.py --dataset_path /path/to/mvtec_ad/toothbrush
+    
+    ```
