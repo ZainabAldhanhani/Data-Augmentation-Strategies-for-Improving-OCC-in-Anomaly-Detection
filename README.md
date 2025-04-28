@@ -83,6 +83,9 @@ Below is the high-level pipeline showing how we train and test each OCC model, w
     - `train_autoencoder_EnvironmentalEffects.py` — train with Simulated Environmental Effects 
     - `train_autoencoder_FDA.py` — train with Fourier Domain Adaptation (FDA)  
 
+- **`Demo/`**  
+  A demo file (notebook) with sample inputs and outputs.
+
 - **`README.md`**  
   Project overview, installation, usage, and structure.
 
