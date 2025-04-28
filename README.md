@@ -151,3 +151,24 @@ Each model folder contains one “vanilla” training script plus one for each a
     python train_autoencoder_FDA.py --dataset_path /path/to/mvtec_ad/toothbrush
     
     ```
+2. **SVDD**
+    ```bash
+    # move into the dataset folder
+    cd SVDD/<Dataset>
+    # e.g. cd SVDD/Avenue
+    
+    # train without augmentation
+    python train_SVDD.py --dataset_path /path/to/Avenue
+    
+    # -- or with a specific augmentation --
+    python train_SVDD_CutPaste.py --dataset_path /path/to/Avenue
+    python train_SVDD_ElasticDeform.py --dataset_path /path/to/Avenue
+    python train_SVDD_FDA.py --dataset_path /path/to/Avenue
+    python train_SVDD_Environmental.py --dataset_path /path/to/Avenue
+    ```
+    For MVTec, you can point --dataset_path at any category folder(e.g. toothbrush, wood, grid):
+    ```bash
+    cd SVDD/Mvtec
+    python train_SVDD_FDA.py --dataset_path /path/to/mvtec_ad/toothbrush
+    
+    ```
