@@ -74,7 +74,7 @@ Below is the high-level pipeline showing how we train and test each OCC model, w
     - `train_autoencoder_EnvironmentalEffects.py` — train with Simulated Environmental Effects 
     - `train_autoencoder_FDA.py` — train with Fourier Domain Adaptation (FDA)  
 
-- **`Deep SVDD/`**  
+- **`SVDD/`**  
   Implements Deep SVDD for each dataset:  
   - **`UCSD_ped1/`**, **`UCSD_ped2/`**, **`Avenue/`**, **`MVTec/`**  
     - `train_autoencoder.py` — train data with no augmentations
