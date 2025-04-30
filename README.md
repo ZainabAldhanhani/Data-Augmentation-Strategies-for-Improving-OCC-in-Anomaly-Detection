@@ -199,11 +199,11 @@ Each model folder contains one “vanilla” training script plus one for each a
 ## Demo 
 We provide a ready-to-run notebook for demonstrating the workflow:
 
-`demo/Autoencoder-UCSD-ped2.ipynb`
+`demo/SVDD_Avenue.ipynb`
 
 **This notebook includes:**
-- Loading and preprocessing of the UCSD Ped2 dataset
-- Training the Autoencoder on normal data
+- Loading and preprocessing of the Avenue dataset
+- Training the SVDD on normal and augmented dats
 - Visualizing sample inputs and reconstructed outputs
 - Computing F1-score and PR-AUC for anomaly detection
 
@@ -216,13 +216,13 @@ We provide a ready-to-run notebook for demonstrating the workflow:
         
         # Step 2: (Optional) Create and activate a virtual environment
         python -m venv venv
-        source venv/bin/activate  # On Windows: venv\Scripts\activate
+        source venv/bin/activate  
         
         # Step 3: Install requirements
         pip install -r requirements.txt
         
         # Step 4: Launch the demo notebook
-        jupyter notebook demo/Autoencoder-UCSD-ped2.ipynb
+        jupyter notebook demo/SVDD_Avenue.ipynb
         ```
 
 
