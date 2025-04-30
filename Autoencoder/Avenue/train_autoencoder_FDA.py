@@ -175,9 +175,11 @@ def evaluate(model, root, gt_list, bs=32):
     print(f"AUC={auc:.4f}, Acc={acc:.4f}, F1={f1:.4f}\nConfusion Matrix:\n{cm}")
     print("Classification Report:\n", classification_report(labels, preds, target_names=['Normal','Anomaly']))
 
-# Main
-if __name__ == '__main__':
-    root = '/l/users/zainab.aldhanhani/AI702Project/AIPROJECTSTART/avenue'
+
+
+# 7. Run
+def main(dataset_path):
+    root = dataset_path
     # define transforms
     train_transform = transforms.Compose([
         FDATransform(root, patch_ratio=0.1, probability=0.5),
@@ -200,18 +202,6 @@ if __name__ == '__main__':
     model = train_model(model, train_loader, epochs=50, lr=1e-3)
     torch.save(model.state_dict(), 'convnext_avenue_fda.pth')
     evaluate(model, root, gt_list)
-
-# 7. Run
-def main(dataset_path):
-    root = dataset_path
-    gt = load_avenue_gt(root)
-    train_ds = AvenueDataset(root, phase='training', gt_list=gt)
-    train_loader = DataLoader(train_ds, batch_size=32, shuffle=True, num_workers=4)
-    model = convnext_autoencoder()
-    model = train_model(model, train_loader, epochs=50, lr=1e-3)
-    torch.save(model.state_dict(), 'convnext_avenue.pth')
-    evaluate(model, root, gt)
-    
 if __name__ == '__main__':
     
 
