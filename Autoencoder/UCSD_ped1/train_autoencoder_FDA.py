@@ -191,7 +191,7 @@ def evaluate(model, root, gt_list, bs=32):
     fpr,tpr,th=roc_curve(labels,scores);thr=th[np.argmax(tpr-fpr)]
     preds=[1 if s>=thr else 0 for s in scores]
     cm=confusion_matrix(labels,preds)
-    pr_auc = average_precision_score(y_true, y_scores)
+    pr_auc = average_precision_score(labels, preds)
     print("PR-AUC Score:", pr_auc)
     print(f"AUC={auc:.4f}, Acc={accuracy_score(labels,preds):.4f}, F1={f1_score(labels,preds):.4f}\nCM:\n{cm}")
     print(classification_report(labels,preds,target_names=['Normal','Anomaly']))
