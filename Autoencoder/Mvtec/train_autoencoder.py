@@ -125,6 +125,8 @@ def evaluate(model, root, bs=32):
     thr = th[np.argmax(tpr - fpr)]
     preds = (scores >= thr).astype(int)
     cm = confusion_matrix(labels, preds)
+    pr_auc = average_precision_score(labels, pred)
+    print("PR-AUC Score:", pr_auc)
     print(f"Image-level AUC = {auc:.4f}\nConfusion Matrix:\n{cm}")
     print(classification_report(labels, preds, target_names=['Good', 'Defective']))
     return scores, labels
