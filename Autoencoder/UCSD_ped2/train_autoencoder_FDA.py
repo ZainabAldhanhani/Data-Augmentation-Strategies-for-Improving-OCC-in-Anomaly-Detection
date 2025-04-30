@@ -13,6 +13,8 @@ from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms
 from pytorch_msssim import ssim  # pip install pytorch-msssim
 from sklearn.metrics import roc_auc_score, roc_curve, confusion_matrix, accuracy_score, f1_score, classification_report
+from sklearn.metrics import precision_recall_curve, average_precision_score
+import matplotlib.pyplot as plt
 
 # Device setup
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
