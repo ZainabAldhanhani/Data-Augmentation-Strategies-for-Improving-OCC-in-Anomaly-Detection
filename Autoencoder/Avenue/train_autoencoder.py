@@ -144,6 +144,8 @@ def evaluate(model, root, gt_list, bs=32):
     cm = C(labels, pred)
     acc = Ac(labels, pred)
     f1 = F(labels, pred)
+    pr_auc = average_precision_score(labels, pred)
+    print("PR-AUC Score:", pr_auc)
     print(f"AUC={auc:.4f}, Acc={acc:.4f}, F1={f1:.4f}\nCM:\n{cm}")
  
 
