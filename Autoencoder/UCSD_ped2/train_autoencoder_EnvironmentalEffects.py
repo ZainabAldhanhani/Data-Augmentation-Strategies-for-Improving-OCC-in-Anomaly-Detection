@@ -12,6 +12,8 @@ from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms
 from pytorch_msssim import ssim  # pip install pytorch-msssim
 from sklearn.metrics import roc_auc_score, roc_curve, confusion_matrix, accuracy_score, f1_score, classification_report
+from sklearn.metrics import precision_recall_curve, average_precision_score
+import matplotlib.pyplot as plt
 
 # Device setup
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -193,6 +195,8 @@ def evaluate(model, root, gt_list, bs=32):
     cm = confusion_matrix(labels, preds)
     acc = accuracy_score(labels, preds)
     f1 = f1_score(labels, preds)
+    pr_auc = average_precision_score(y_true, y_scores)
+    print("PR-AUC Score:", pr_auc)
     print(f"AUC={auc:.4f}, Acc={acc:.4f}, F1={f1:.4f}CM:{cm}")
     print(classification_report(labels, preds, target_names=['Normal', 'Anomaly']))
 
