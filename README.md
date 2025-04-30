@@ -196,3 +196,55 @@ Each model folder contains one “vanilla” training script plus one for each a
     python train_OCGAN_FDA.py --dataset_path /path/to/mvtec_ad/toothbrush
     
     ```
+## Demo 
+We provide a ready-to-run notebook for demonstrating the workflow:
+
+`demo/Autoencoder-UCSD-ped2.ipynb`
+
+**This notebook includes:**
+- Loading and preprocessing of the UCSD Ped2 dataset
+- Training the Autoencoder on normal data
+- Visualizing sample inputs and reconstructed outputs
+- Computing F1-score and PR-AUC for anomaly detection
+
+**Run the demo locally:**
+
+    ```bash
+        # Step 1: Clone the repository
+        git clone https://github.com/ZainabAldhanhani/Enhancing-Deepfake-Detection.git
+        cd Enhancing-Deepfake-Detection
+        
+        # Step 2: (Optional) Create and activate a virtual environment
+        python -m venv venv
+        source venv/bin/activate  # On Windows: venv\Scripts\activate
+        
+        # Step 3: Install requirements
+        pip install -r requirements.txt
+        
+        # Step 4: Launch the demo notebook
+        jupyter notebook demo/Autoencoder-UCSD-ped2.ipynb
+        ```
+
+
+
+  ## Results Summary
+
+We evaluated three One-Class Classification (OCC) models — Autoencoder, OCGAN, and Deep SVDD — across three benchmark datasets: UCSD, Avenue, and MVTec.
+The models were tested with and without five augmentation strategies: CutPaste, Elastic Deformations, Fourier Domain Adaptation (FDA), and Simulated Environmental Effects.
+
+### Key Findings:
+
+**Autoencoder:**
+
+Elastic Deformations consistently achieved the highest gains in F1-score and PR-AUC (e.g., +13.17% F1 on UCSD Ped1 and +15.73% PR-AUC on Ped2).
+FDA showed strong performance in MVTec (e.g., best F1 on Grid and Wood).
+
+**OCGAN:**
+
+Results were model- and dataset-dependent. While CutPaste and Simulated Effects were beneficial in some cases, Elastic Deformations and FDA led to the most consistent improvements.
+Toothbrush PR-AUC improved by +26.29% with simulated effects.
+
+**Deep SVDD:**
+
+FDA and Simulated Environmental Effects provided substantial improvements across MVTec datasets.
+In the Wood category, Simulated Environmental Effects boosted PR-AUC by +14.61%, and FDA improved F1-score by +10.64%.
