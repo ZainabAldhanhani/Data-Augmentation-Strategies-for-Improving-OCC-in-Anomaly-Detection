@@ -13,6 +13,8 @@ from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms
 from pytorch_msssim import ssim  # pip install pytorch-msssim
 from sklearn.metrics import roc_auc_score, roc_curve, confusion_matrix, accuracy_score, f1_score, classification_report
+from sklearn.metrics import precision_recall_curve, average_precision_score
+import matplotlib.pyplot as plt
 
 # Device setup
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -122,27 +124,29 @@ def train_model(model, loader, epochs=50, lr=1e-3):
         print(f"Epoch {ep}/{epochs}, Loss={avg_loss:.6f}")
     return model
 
-# Evaluation
 def evaluate(model, root, bs=32):
     model.eval()
-    ds = MVTecDataset(root, phase='test', transform=test_transform())
+    ds = MVTecBottleDataset(root, phase='test', transform=test_transform)
     loader = DataLoader(ds, batch_size=bs, shuffle=False)
     scores, labels = [], []
     with torch.no_grad():
         for x, y in loader:
             x = x.to(device)
             recon = model(x)
-            err = torch.mean((recon - x)**2, dim=[1,2,3]).detach().cpu().numpy()
+            err = torch.mean((recon-x)**2, dim=[1,2,3]).detach().cpu().numpy()
             scores.extend(err.tolist())
             labels.extend(y)
-    scores, labels = np.array(scores), np.array(labels)
+    scores = np.array(scores); labels = np.array(labels)
     auc = roc_auc_score(labels, scores)
     fpr, tpr, th = roc_curve(labels, scores)
     thr = th[np.argmax(tpr - fpr)]
     preds = (scores >= thr).astype(int)
     cm = confusion_matrix(labels, preds)
-    print(f"Image-level AUC = {auc:.4f}\nConfusion Matrix:\n{cm}")
-    print(classification_report(labels, preds, target_names=['Good', 'Defective']))
+    acc = accuracy_score(labels, preds)
+    f1 = f1_score(labels, preds)
+    print(f"AUC={auc:.4f}, Acc={acc:.4f}, F1={f1:.4f}\nConfusion Matrix:\n{cm}")
+    #print(f"Image-level AUC = {auc:.4f}\nConfusion Matrix:\n{cm}")
+    print(classification_report(labels, preds, target_names=['Good','Defective']))
     return scores, labels
 
 
