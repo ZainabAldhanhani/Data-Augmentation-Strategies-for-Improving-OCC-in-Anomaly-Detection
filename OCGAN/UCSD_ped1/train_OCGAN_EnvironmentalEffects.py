@@ -11,6 +11,8 @@ import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms
 from sklearn.metrics import roc_auc_score, roc_curve, confusion_matrix, accuracy_score, f1_score, classification_report
+from sklearn.metrics import precision_recall_curve, average_precision_score
+import matplotlib.pyplot as plt
 
 # Device setup
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -204,6 +206,8 @@ def evaluate_ocgan_ped1(E, G, root, gt_list, batch_size=32):
     preds = [1 if s>=thr else 0 for s in scores]
     cm = confusion_matrix(labels, preds)
     acc = accuracy_score(labels, preds); f1 = f1_score(labels, preds)
+    pr_auc = average_precision_score(labels, preds)
+    print("PR-AUC Score:", pr_auc)
     print(f"AUC={auc:.4f}, Acc={acc:.4f}, F1={f1:.4f}\nConfusion Matrix:\n{cm}")
     print(classification_report(labels, preds, target_names=['Normal','Anomaly']))
 
